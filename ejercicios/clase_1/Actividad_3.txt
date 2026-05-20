@@ -1,0 +1,28 @@
+Actividad 3 — Disección y Diseño de URLs 
+
+Parte A: Analiza esta URL real y describe cada componente.
+https://api.github.com:443/repos/bryancs/isw521/issues?state=open&labels=semana1#comentarios
+
+
+¿Cuántos componentes identificás? Nómbralos con su valor exacto de esta URL.
+
+-Protocolo: https
+-Dominio/Subdominio: api.github.com
+-Puerto: 443
+-Ruta (path): /repos/bryancs/isw521/issues
+-Parámetro query 1: state=open
+-Parámetro query 2: labels=semana1
+-Parámetro query 3: sort=created
+
+Parte B: Diseña Clean URLs para estos recursos del sistema de la UTN.
+1. La página de un curso: ISW-521, cuatrimestre 2026-II, sede San Carlos,
+
+-https://utn.ac.cr/cursos/isw-521/2026-2/san-carlos
+
+2. El perfil de un estudiante con carné 2022-0001.
+
+-https://utn.ac.cr/estudiantes/2022-0001
+
+3. La lista de materiales de la semana 3 del curso ISW-521
+
+-https://utn.ac.cr/cursos/isw-521/materiales/semana-3

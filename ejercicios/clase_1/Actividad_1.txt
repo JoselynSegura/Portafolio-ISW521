@@ -1,0 +1,16 @@
+Actividad 1 — Análisis de Casos 
+
+El escenario:
+ La UTN San Carlos quiere lanzar un sistema de notas en línea. El Rector le dice al equipo de TI: "Pongan eso en Internet". El director de TI responde: "Técnicamente, lo pondríamos en la Web. Y necesitamos decidir si es WWW pública o no".
+
+1.  ¿Es correcto lo que dijo el Rector? ¿Por qué la distinción del director de TI es técnicamente importante?
+
+-El rector usa la palabra "Internet" de una forma coloquial para referirse a publicar el sistema, pero técnicamente el que tiene razón es el director de TI. Por un lado internet se entiende como esa red global de redes, es una infraestructura que conecta dispositivos. En el caso de WWW, es un servicio que funciona sobre Internet, utilizando tecnologías como HTTP y navegadores web. Su distinción es importante porque un sistema puede estar conectado a Internet, pero no ser público en la Web. 
+
+2.  Si usan HTTP sobre Internet pero solo para usuarios internos de la UTN, ¿están usando Internet o la WWW, o ambos?
+
+-Se está utilizando ambos porque este sistema funciona sobre protocolos TCP/IP. Se utiliza WWW porque se utiliza HTTP y probablemente un navegador web que permita acceder al sistema. 
+
+3.  ¿Qué organismo (W3C o IETF) define los estándares más relevantes para este sistema de notas? Justifica
+
+-Ambos organismos participan definiendo diferente cosas. En el caso de W3C, se definen estándares relacionados con la web, como HTML, CSS, Accesibilidad web y estructura y presentación de páginas. Por el lado de IETF, se define estándares de Internet y comunicación, como HTTP, TCP/IP, DNS y seguridad en la red (TLS). Para el sistema de notas en línea W3C define cómo se construye y se presenta la interfaz web y el IETF define cómo viajan los datos y se comunican los dispositivos. 

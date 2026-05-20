@@ -1,0 +1,26 @@
+Actividad 2 — Toma de Decisión Técnica 
+
+El caso:
+
+La Municipalidad de Aguas Zarcas te contrata como consultor de TI. Tienen tres necesidades:
+(A) Un sitio de información pública con trámites para vecinos.
+(B) Un sistema interno de gestión de planillas para RRHH.
+(C) Un portal donde las empresas constructoras del cantón revisan permisos de construcción activos.
+
+
+1. Para cada necesidad (A, B, C), decide qué topología implementar: Internet, Intranet o Extranet. Justifica en 2 líneas cada una.
+
+- A) Es un sitio de información pública por lo que se implementaría Internet. Este permite que cualquier vecino pueda acceder desde cualquier lugar, es decir, la información es pública y no requiere acceso interno de la municipalidad. 
+
+- B) Para el sistemas de planillas de RRHH, se implementaría Intranet. En este escenario se está trabajando con información privada de empleados y salarios, por lo que solo el personal autorizado dentro de la municipalidad debe tener acceso
+
+- C) En el caso del portal para constructoras, se implementaría Extranet. En este escenario existen empresas externas que necesitan acceso controlando el sistema, no sería totalmente público pero tampoco exclusivo para empleados internos. 
+
+2. ¿Cuál de los tres sistemas requiere más inversión en seguridad? ¿Por qué?
+
+-En este caso el sistema de planillas de RRHH que utiliza Intranet. Esto porque este sistema maneja datos sensibles como salarios, información personal y permisos interns. Un acceso no autorizado podría causar problemas legales y de privacidad.
+
+3. ¿Podría un mismo servidor físico alojar los tres sistemas de forma segura? ¿Cómo lo lograrías conceptualmente?
+
+-Sí, esto utilizado virtualización o máquinas virtuales. Donde cada sistema se separa en ambientes distintos con diferentes permisos, niveles de acceso y demás, que mantengan la seguridad y eviten que un sistema afecte a los demás.
+
