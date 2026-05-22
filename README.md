@@ -9,6 +9,8 @@ Repositorio personal del curso ISW-521.
   - Creación de repositorio con Portafolio
   - Actividades de Introducción:
     Internet y la Web · URL · Dominio de Internet · Internet, extranet, intranet.
+- Clase 2
+  - Fundamentos de Redes, HTTP y criptografía
 ## Tecnologías utilizadas
 - Git
 - GitHub
