@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Galería de Recursos Multimedia</title>
+</head>
+<body>
+
+  <h1>Galería de Recursos Multimedia</h1>
+
+  <!-- 1. Imagen principal con <picture> y 2 fuentes -->
+  <section>
+    <h2>Imagen del Curso</h2>
+    <picture>
+      <source srcset="https://picsum.photos/800/400.webp" type="image/webp">
+      <source srcset="https://picsum.photos/800/400.jpg" type="image/jpeg">
+      <img src="https://picsum.photos/800/400.jpg" alt="Portada del curso en línea" title="Imagen principal del curso">
+    </picture>
+  </section>
+
+  <!-- 2. Video con controles, poster y 2 formatos -->
+  <section>
+    <h2>Video de la Clase</h2>
+    <video controls poster="https://picsum.photos/600/340.jpg" title="Video de la clase">
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">
+      <source src="https://www.w3schools.com/html/mov_bbb.webm" type="video/webm">
+      Tu navegador no soporta la reproducción de video.
+    </video>
+  </section>
+
+  <!-- 3. Audio de podcast con controls y loop desactivado -->
+  <section>
+    <h2>Podcast del Curso</h2>
+    <!-- loop desactivado: se omite el atributo loop intencionalmente -->
+    <audio controls title="Podcast del curso">
+      <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg">
+      Tu navegador no soporta la reproducción de audio.
+    </audio>
+  </section>
+
+  <!-- 4. iframe de Google Maps con sandbox correcto -->
+  <section>
+    <h2>Ubicación del Campus</h2>
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3929.919010851455!2d-84.05291492394992!3d9.935059873989418!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8fa0e343306c5f8d%3A0xab757e759d91e6c!2sUniversidad%20Latina%20de%20Costa%20Rica!5e0!3m2!1ses!2scr!4v1"
+      width="600"
+      height="450"
+      title="Mapa de ubicación del campus"
+      sandbox="allow-scripts allow-same-origin"
+      allowfullscreen
+      loading="lazy">
+    </iframe>
+  </section>
+
+</body>
+</html>

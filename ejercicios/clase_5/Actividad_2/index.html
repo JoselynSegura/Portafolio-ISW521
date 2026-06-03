@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Horario ISW</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;700&family=Source+Code+Pro:wght@400;600&display=swap');
+
+    :root {
+      --bg: #1e2a38;
+      --header-bg: #3a7bd5;
+      --header-text: #ffffff;
+      --row-dark: #253444;
+      --row-light: #2c3e52;
+      --receso-bg: #2a1f3d;
+      --receso-text: #f0c040;
+      --course-color: #5de0b0;
+      --libre-bg: #3a3a4a;
+      --libre-text: #aaaacc;
+      --hora-text: #ccddff;
+      --border: #3d5470;
+      --accent: #f0c040;
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background: var(--bg);
+      font-family: 'Rajdhani', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    h1 {
+      color: #ffffff;
+      font-size: 2rem;
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      color: var(--accent);
+      font-style: italic;
+      font-size: 1rem;
+      margin-bottom: 30px;
+      font-family: 'Source Code Pro', monospace;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    th {
+      background: var(--header-bg);
+      color: var(--header-text);
+      padding: 18px 24px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+    td {
+      padding: 20px 24px;
+      border: 1px solid var(--border);
+      font-size: 1.05rem;
+      vertical-align: middle;
+    }
+
+    tr:nth-child(odd) td {
+      background: var(--row-dark);
+    }
+
+    tr:nth-child(even) td {
+      background: var(--row-light);
+    }
+
+    .hora {
+      color: var(--hora-text);
+      font-family: 'Source Code Pro', monospace;
+      font-weight: 600;
+      font-size: 1rem;
+    }
+
+    .curso {
+      color: var(--course-color);
+      font-weight: 700;
+      font-size: 1.1rem;
+      letter-spacing: 0.5px;
+    }
+
+    .libre {
+      background: var(--libre-bg) !important;
+      color: var(--libre-text);
+      font-style: italic;
+    }
+
+    .receso {
+      background: var(--receso-bg) !important;
+      color: var(--receso-text);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 2px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Actividad — Tema 5: Tablas</h1>
+  <p class="subtitle">Codifica el horario de clases de ISW</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Hora</th>
+        <th>Lunes</th>
+        <th>Martes</th>
+        <th>Miércoles</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="hora">7:00</td>
+        <td class="curso">ISW-521</td>
+        <td class="curso">ISW-311</td>
+        <td class="libre">Libre</td>
+      </tr>
+      <tr>
+        <td class="hora">9:00</td>
+        <td class="receso" colspan="3">Receso</td>
+      </tr>
+      <tr>
+        <td class="hora">10:00</td>
+        <td class="curso">ISW-421</td>
+        <td class="curso">ISW-521</td>
+        <td class="curso">ISW-311</td>
+      </tr>
+    </tbody>
+  </table>
+
+</body>
+</html>
