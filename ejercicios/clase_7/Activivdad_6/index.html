@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard Monitoreo Hídrico</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<nav class="navbar">
+<div class="nav-logo">💧 AcueductosIoT</div>
+<ul class="nav-links">
+<li><a href="#">Inicio</a></li>
+<li><a href="#">Sensores</a></li>
+<li><a href="#">Alertas</a></li>
+<li><a href="#">Reportes</a></li>
+</ul>
+<button class="btn-logout">Cerrar Sesión</button>
+</nav>
+
+<div class="dashboard-layout">
+<aside class="sidebar">
+<h2>📊 Menú</h2>
+<ul>
+<li>📈 Resumen</li>
+<li>💧 Tanques</li>
+<li>⚡ Presiones</li>
+<li>🧪 Calidad</li>
+<li>⚙️ Configuración</li>
+</ul>
+</aside>
+
+<main class="main-content">
+<h1>Dashboard de Monitoreo Hídrico</h1>
+
+<section class="charts-grid">
+<div class="chart-card">
+<h3>Consumo Diario</h3>
+<div class="bar-chart">
+<div class="bar" style="height:60%"></div>
+<div class="bar" style="height:75%"></div>
+<div class="bar" style="height:90%"></div>
+<div class="bar" style="height:55%"></div>
+<div class="bar" style="height:80%"></div>
+</div>
+</div>
+
+<div class="chart-card">
+<h3>Tendencia de Presión</h3>
+<div class="line-chart">
+<svg viewBox="0 0 300 120">
+<polyline points="0,90 50,70 100,80 150,40 200,60 250,30 300,50"/>
+</svg>
+</div>
+</div>
+</section>
+
+<section class="sensor-grid">
+<div class="sensor-card"><h3>💧 Nivel de Tanque Principal</h3><p class="sensor-value">73%</p><div class="progress"><div class="progress-fill tank"></div></div></div>
+<div class="sensor-card"><h3>⚡ Presión de Red</h3><p class="sensor-value">42 PSI</p><div class="progress"><div class="progress-fill pressure"></div></div></div>
+<div class="sensor-card"><h3>🧪 Calidad del Agua</h3><p class="sensor-value">1.5 mg/L</p><div class="progress"><div class="progress-fill quality"></div></div></div>
+<div class="sensor-card"><h3>🚰 Caudal de Entrada</h3><p class="sensor-value">450 L/min</p><div class="progress"><div class="progress-fill flow"></div></div></div>
+<div class="sensor-card"><h3>🌡️ Temperatura</h3><p class="sensor-value">24°C</p><div class="progress"><div class="progress-fill temperature"></div></div></div>
+<div class="sensor-card"><h3>🔒 Válvula</h3><p class="sensor-value">Cerrada</p><div class="progress"><div class="progress-fill valve"></div></div></div>
+</section>
+</main>
+
+<aside class="alert-panel">
+<h2>🔔 Alertas</h2>
+<div class="alert critical">Presión baja - Sector B</div>
+<div class="alert success">Cloro normal</div>
+<div class="alert warning">Tanque al 73%</div>
+</aside>
+</div>
+
+<footer class="footer">
+<p>© 2026 Dashboard Monitoreo Hídrico | ISW-521 Laboratorio 3</p>
+</footer>
+</body>
+</html>
