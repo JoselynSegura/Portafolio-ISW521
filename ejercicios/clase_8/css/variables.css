@@ -1,0 +1,67 @@
+/* ============================================================
+   VARIABLES.CSS — Auto Style CR · ISW-521
+   Tokens centralizados. Paleta oscura industrial/deportiva
+   basada en el diseño de referencia del laboratorio.
+   ============================================================ */
+
+:root {
+  /* ---------- Paleta oscura de marca ---------- */
+  --color-bg:           #0D0D1A;   /* fondo global casi negro-azul */
+  --color-bg-panel:     #13132A;   /* paneles ligeramente más claros */
+  --color-bg-card:      #1A1A35;   /* tarjetas internas */
+  --color-border:       #2A2A50;   /* bordes sutiles */
+  --color-border-active:#E63946;   /* borde rojo al seleccionar */
+
+  --color-text:         #FFFFFF;
+  --color-text-muted:   #9999BB;
+  --color-text-label:   #CCCCDD;
+
+  --color-accent:       #E63946;   /* rojo deportivo */
+  --color-accent-hover: #FF4D5A;
+  --color-focus:        #4FC3F7;   /* azul claro, contraste AA sobre oscuro */
+  --color-total:        #E63946;   /* precio total en rojo */
+
+  /* ---------- Tipografía ---------- */
+  --font-display: "Arial Black", "Arial", sans-serif;
+  --font-body:    "Arial", "Helvetica Neue", sans-serif;
+
+  /* ---------- Espaciado fluido ---------- */
+  --space-xs: clamp(0.25rem, 0.5vw, 0.4rem);
+  --space-sm: clamp(0.4rem,  1vw,   0.75rem);
+  --space-md: clamp(0.75rem, 2vw,   1.1rem);
+  --space-lg: clamp(1rem,    3vw,   1.75rem);
+
+  /* ---------- Forma ---------- */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --shadow-panel: 0 4px 24px rgba(0, 0, 0, 0.5);
+  --shadow-card:  0 2px 10px rgba(0, 0, 0, 0.4);
+
+  /* ---------- Transiciones ---------- */
+  --transition-fast:   0.18s ease;
+  --transition-medium: 0.32s ease;
+
+  /* ====================================================
+     COLOR DEL VEHÍCULO — técnica mix-blend-mode overlay
+     En vez de hue-rotate, usamos un <div> de color sólido
+     superpuesto sobre la imagen con mix-blend-mode: color.
+     Esto da colores exactos y predecibles para cualquier
+     tono (incluido naranja), sin distorsionar sombras.
+
+     --car-overlay-color: color sólido del overlay
+     --car-overlay-opacity: cuánto tiñe (0 = nada, 1 = total)
+     Plata: el overlay es transparente (imagen original)
+     ==================================================== */
+  --car-overlay-color:   transparent;
+  --car-overlay-opacity: 0;
+
+  /* Swatches de la paleta (color real del botón) */
+  --swatch-rojo:    #E63946;
+  --swatch-blanco:  #F0F0F0;
+  --swatch-negro:   #1A1A1A;
+  --swatch-azul:    #1565C0;
+  --swatch-plata:   #9E9E9E;
+  --swatch-verde:   #2E7D32;
+  --swatch-naranja: #E65100;
+  --swatch-perla:   #F5F0E8;
+}

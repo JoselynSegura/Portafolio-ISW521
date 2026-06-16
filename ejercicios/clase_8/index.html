@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Showroom Interactivo — Auto Style CR · ISW-521</title>
+  <link rel="stylesheet" href="css/variables.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/palette.css">
+  <link rel="stylesheet" href="css/interactions.css">
+</head>
+<body>
+
+  <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
+  <!-- ============================================================
+       RADIO INPUTS DE ESTADO
+       Deben ser hermanos anteriores a .app-shell para que el
+       selector general de hermanos (~) del Radio Button Hack
+       pueda alcanzar todo el contenido de la aplicación.
+       ============================================================ -->
+
+  <!-- Modelo -->
+  <input type="radio" name="car-model" id="model-corolla" class="visually-hidden-input" checked>
+  <input type="radio" name="car-model" id="model-hilux"   class="visually-hidden-input">
+
+  <!-- Ángulo -->
+  <input type="radio" name="car-angle" id="angle-front" class="visually-hidden-input" checked>
+  <input type="radio" name="car-angle" id="angle-side"  class="visually-hidden-input">
+  <input type="radio" name="car-angle" id="angle-rear"  class="visually-hidden-input">
+
+  <!-- Color de pintura -->
+  <input type="radio" name="car-color" id="color-rojo"    class="visually-hidden-input">
+  <input type="radio" name="car-color" id="color-blanco"  class="visually-hidden-input">
+  <input type="radio" name="car-color" id="color-negro"   class="visually-hidden-input">
+  <input type="radio" name="car-color" id="color-azul"    class="visually-hidden-input">
+  <input type="radio" name="car-color" id="color-plata"   class="visually-hidden-input" checked>
+  <input type="radio" name="car-color" id="color-verde"   class="visually-hidden-input">
+  <input type="radio" name="car-color" id="color-naranja" class="visually-hidden-input">
+  <input type="radio" name="car-color" id="color-perla"   class="visually-hidden-input">
+
+  <!-- Tipo de pintura -->
+  <input type="radio" name="paint-type" id="paint-estandar" class="visually-hidden-input" checked>
+  <input type="radio" name="paint-type" id="paint-metalica" class="visually-hidden-input">
+  <input type="radio" name="paint-type" id="paint-perlada"  class="visually-hidden-input">
+
+  <!-- Nivel de reparación -->
+  <input type="radio" name="repair-level" id="repair-leve"     class="visually-hidden-input" checked>
+  <input type="radio" name="repair-level" id="repair-moderado" class="visually-hidden-input">
+  <input type="radio" name="repair-level" id="repair-severo"   class="visually-hidden-input">
+
+
+  <!-- ============================================================
+       APP SHELL — todo el contenido visible
+       ============================================================ -->
+  <div class="app-shell">
+
+    <!-- HEADER -->
+    <header class="site-header">
+      <div class="site-header__inner">
+        <h1>Taller <span>Auto Style</span> — Cotizador Interactivo</h1>
+        <p class="site-header__sub">ISW-521 · Programación Web · HTML + CSS Puro · Sin JavaScript</p>
+      </div>
+    </header>
+
+    <!-- MAIN -->
+    <main id="main-content" class="showroom-grid">
+
+      <!-- =====================================================
+           ZONA A — SIDEBAR: Marca y Ángulo
+           ===================================================== -->
+      <nav class="sidebar" aria-label="Selección de marca y vista del vehículo">
+
+        <!-- Selector de Marca -->
+        <section class="panel" aria-labelledby="lbl-marca">
+          <h2 class="panel__title" id="lbl-marca">Marca</h2>
+
+          <fieldset class="option-group" aria-describedby="lbl-marca">
+            <legend class="visually-hidden-input" style="position:static;width:auto;height:auto;opacity:1;pointer-events:auto;display:block;font-size:clamp(0.7rem,1.4vw,0.8rem);letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-xs)">
+              Seleccioná el modelo
+            </legend>
+            <ul class="option-list">
+              <li>
+                <label for="model-corolla" class="option-pill">
+                  <span>
+                    <span class="option-pill__name">Toyota Corolla GR</span>
+                    <span class="option-pill__sub">Sedán · 2024</span>
+                  </span>
+                  <span class="option-pill__check" aria-hidden="true">✓</span>
+                </label>
+              </li>
+              <li>
+                <label for="model-hilux" class="option-pill">
+                  <span>
+                    <span class="option-pill__name">Toyota Hilux 4x4</span>
+                    <span class="option-pill__sub">Pickup · 2024</span>
+                  </span>
+                  <span class="option-pill__check" aria-hidden="true">✓</span>
+                </label>
+              </li>
+            </ul>
+          </fieldset>
+        </section>
+
+        <!-- Selector de Ángulo -->
+        <section class="panel" aria-labelledby="lbl-angulo">
+          <h2 class="panel__title" id="lbl-angulo">Ángulo</h2>
+
+          <fieldset class="option-group">
+            <legend class="visually-hidden-input" style="position:static;width:auto;height:auto;opacity:1;pointer-events:auto;display:block;font-size:clamp(0.7rem,1.4vw,0.8rem);letter-spacing:.1em;text-transform:uppercase;color:var(--color-text-muted);margin-bottom:var(--space-xs)">
+              Seleccioná la vista de cámara
+            </legend>
+            <ul class="option-list">
+              <li>
+                <label for="angle-front" class="option-pill">
+                  <span class="option-pill__name">Frente</span>
+                  <span class="option-pill__check" aria-hidden="true">✓</span>
+                </label>
+              </li>
+              <li>
+                <label for="angle-side" class="option-pill">
+                  <span class="option-pill__name">Perfil</span>
+                  <span class="option-pill__check" aria-hidden="true">✓</span>
+                </label>
+              </li>
+              <li>
+                <label for="angle-rear" class="option-pill">
+                  <span class="option-pill__name">Atrás</span>
+                  <span class="option-pill__check" aria-hidden="true">✓</span>
+                </label>
+              </li>
+            </ul>
+          </fieldset>
+        </section>
+
+      </nav>
+
+      <!-- =====================================================
+           ZONA B — ÁREA PRINCIPAL: Vista del vehículo
+           ===================================================== -->
+      <section class="vehicle-section panel" aria-labelledby="lbl-vista">
+
+        <h2 class="panel__title" id="lbl-vista">
+          Área Principal · CSS Grid
+        </h2>
+
+        <!-- Barra de estado (qué está seleccionado) -->
+        <p class="status-bar" aria-live="polite">
+          <strong>
+            <span class="status__model status__model--corolla">Toyota Corolla GR</span>
+            <span class="status__model status__model--hilux">Toyota Hilux 4x4</span>
+          </strong>
+          ·
+          <span class="status__angle status__angle--front">Vista Frontal</span>
+          <span class="status__angle status__angle--side">Perfil Lateral</span>
+          <span class="status__angle status__angle--rear">Vista Trasera</span>
+          ·
+          <span class="status__color status__color--rojo">Rojo</span>
+          <span class="status__color status__color--blanco">Blanco</span>
+          <span class="status__color status__color--negro">Negro</span>
+          <span class="status__color status__color--azul">Azul</span>
+          <span class="status__color status__color--plata">Plata</span>
+          <span class="status__color status__color--verde">Verde</span>
+          <span class="status__color status__color--naranja">Naranja</span>
+          <span class="status__color status__color--perla">Perla</span>
+        </p>
+
+        <!-- Indicador visual de técnica CSS -->
+        <p style="font-size:0.72rem;color:var(--color-text-muted);text-align:center;letter-spacing:0.08em;margin-bottom:var(--space-sm)">
+          var(--car-color) · input:checked · mix-blend-mode: color · transition: all 0.3s ease
+        </p>
+
+        <!-- Grid Overlay del vehículo -->
+        <div class="model-block model-block--corolla">
+          <figure class="vehicle-display" aria-label="Vista interactiva Toyota Corolla GR">
+            <!-- Overlay de color (mix-blend-mode: color en layout.css) -->
+            <div class="vehicle-display__overlay" aria-hidden="true"></div>
+            <img class="vehicle-display__img vehicle-display__img--front"
+                 src="img/frente1.png"
+                 alt="Toyota Corolla GR 2024, vista frontal, carrocería en tono personalizable mediante la paleta de colores">
+            <img class="vehicle-display__img vehicle-display__img--side"
+                 src="img/lado1.png"
+                 alt="Toyota Corolla GR 2024, perfil lateral, carrocería en tono personalizable mediante la paleta de colores">
+            <img class="vehicle-display__img vehicle-display__img--rear"
+                 src="img/atras1.png"
+                 alt="Toyota Corolla GR 2024, vista trasera, carrocería en tono personalizable mediante la paleta de colores">
+            <figcaption style="display:none">Vista del Toyota Corolla GR con color seleccionado</figcaption>
+          </figure>
+        </div>
+
+        <div class="model-block model-block--hilux">
+          <figure class="vehicle-display" aria-label="Vista interactiva Toyota Hilux 4x4">
+            <div class="vehicle-display__overlay" aria-hidden="true"></div>
+            <img class="vehicle-display__img vehicle-display__img--front"
+                 src="img/frente2.png"
+                 alt="Toyota Hilux 4x4 SR 2024, vista frontal, carrocería en tono personalizable mediante la paleta de colores">
+            <img class="vehicle-display__img vehicle-display__img--side"
+                 src="img/lado2.png"
+                 alt="Toyota Hilux 4x4 SR 2024, perfil lateral, carrocería en tono personalizable mediante la paleta de colores">
+            <img class="vehicle-display__img vehicle-display__img--rear"
+                 src="img/atras2.png"
+                 alt="Toyota Hilux 4x4 SR 2024, vista trasera, carrocería en tono personalizable mediante la paleta de colores">
+            <figcaption style="display:none">Vista del Toyota Hilux 4x4 SR con color seleccionado</figcaption>
+          </figure>
+        </div>
+
+        <!-- Descripción del servicio elegido -->
+        <article aria-label="Descripción del acabado y reparación seleccionados">
+
+          <!-- Selector tipo de pintura (inline en zona central) -->
+          <h3 class="panel__title">Tipo de pintura</h3>
+          <div class="inline-selector" role="group" aria-label="Elegí el tipo de pintura">
+            <label for="paint-estandar" class="inline-pill">
+              <span class="inline-pill__check" aria-hidden="true">✓ </span>Estándar
+            </label>
+            <label for="paint-metalica" class="inline-pill">
+              <span class="inline-pill__check" aria-hidden="true">✓ </span>Metálica
+            </label>
+            <label for="paint-perlada" class="inline-pill">
+              <span class="inline-pill__check" aria-hidden="true">✓ </span>Perlada
+            </label>
+          </div>
+
+          <div class="paint-desc paint-desc--estandar service-info">
+            <strong>Pintura Estándar</strong>
+            Acabado sólido de un solo tono. Ideal para mantenimiento general,
+            la opción más económica y con buena durabilidad para uso diario.
+          </div>
+          <div class="paint-desc paint-desc--metalica service-info">
+            <strong>Pintura Metálica</strong>
+            Partículas de aluminio integradas que aportan brillo y profundidad visual.
+            Resalta las líneas de la carrocería bajo luz directa y mejora la apariencia premium.
+          </div>
+          <div class="paint-desc paint-desc--perlada service-info">
+            <strong>Pintura Perlada</strong>
+            Acabado premium con efecto nacarado que cambia sutilmente de tono según el ángulo
+            de la luz. Mayor resistencia a rayones leves y un brillo más duradero en el tiempo.
+          </div>
+
+          <!-- Selector nivel de reparación (inline) -->
+          <h3 class="panel__title" style="margin-top:var(--space-md)">Nivel de reparación</h3>
+          <div class="inline-selector" role="group" aria-label="Elegí el nivel de reparación necesario">
+            <label for="repair-leve" class="inline-pill">
+              <span class="inline-pill__check" aria-hidden="true">✓ </span>Leve
+            </label>
+            <label for="repair-moderado" class="inline-pill">
+              <span class="inline-pill__check" aria-hidden="true">✓ </span>Moderado
+            </label>
+            <label for="repair-severo" class="inline-pill">
+              <span class="inline-pill__check" aria-hidden="true">✓ </span>Severo
+            </label>
+          </div>
+
+          <div class="repair-desc repair-desc--leve service-info">
+            <strong>Reparación Leve</strong>
+            Rayones superficiales o pequeñas abolladuras sin afectar la pintura base.
+            Trabajo rápido que no requiere desmontaje de piezas.
+          </div>
+          <div class="repair-desc repair-desc--moderado service-info">
+            <strong>Reparación Moderada</strong>
+            Abolladuras medianas que requieren enderezado de lámina y preparación
+            adicional de la superficie antes de aplicar la pintura.
+          </div>
+          <div class="repair-desc repair-desc--severo service-info">
+            <strong>Reparación Severa</strong>
+            Daño estructural visible con deformación del panel. Requiere enderezado
+            completo, masillado y varias capas de imprimante y acabado.
+          </div>
+
+        </article>
+
+      </section>
+
+      <!-- =====================================================
+           ZONA C — COTIZACIÓN
+           ===================================================== -->
+      <aside class="quote-panel panel" aria-labelledby="lbl-cotizacion">
+
+        <h2 class="panel__title" id="lbl-cotizacion">Cotización</h2>
+
+        <!-- Resumen de selección -->
+        <p style="font-size:clamp(0.72rem,1.4vw,0.82rem);color:var(--color-text-muted);margin-bottom:var(--space-md)">
+          <span class="status__model status__model--corolla">Toyota Corolla GR</span>
+          <span class="status__model status__model--hilux">Toyota Hilux 4x4</span><br>
+          Sedán 2024 ·
+          <span class="status__color status__color--rojo">Rojo</span>
+          <span class="status__color status__color--blanco">Blanco</span>
+          <span class="status__color status__color--negro">Negro</span>
+          <span class="status__color status__color--azul">Azul</span>
+          <span class="status__color status__color--plata">Plata</span>
+          <span class="status__color status__color--verde">Verde</span>
+          <span class="status__color status__color--naranja">Naranja</span>
+          <span class="status__color status__color--perla">Perla</span>
+        </p>
+
+        <!-- Desglose de costos -->
+        <div class="price-breakdown" role="group" aria-label="Desglose de costos estimados en colones">
+
+          <p class="price-line price-line--base-corolla">
+            <span>Servicio base — Corolla GR</span>
+            <span>₡180,000</span>
+          </p>
+          <p class="price-line price-line--base-hilux">
+            <span>Servicio base — Hilux 4x4</span>
+            <span>₡230,000</span>
+          </p>
+
+          <p class="price-line price-line--paint price-line--paint-estandar">
+            <span>Pintura estándar</span>
+            <span>+ ₡0</span>
+          </p>
+          <p class="price-line price-line--paint price-line--paint-metalica">
+            <span>Pintura metálica</span>
+            <span>+ ₡35,000</span>
+          </p>
+          <p class="price-line price-line--paint price-line--paint-perlada">
+            <span>Pintura perlada</span>
+            <span>+ ₡60,000</span>
+          </p>
+
+          <p class="price-line price-line--repair price-line--repair-leve">
+            <span>Reparación leve</span>
+            <span>+ ₡0</span>
+          </p>
+          <p class="price-line price-line--repair price-line--repair-moderado">
+            <span>Reparación moderada</span>
+            <span>+ ₡45,000</span>
+          </p>
+          <p class="price-line price-line--repair price-line--repair-severo">
+            <span>Reparación severa</span>
+            <span>+ ₡95,000</span>
+          </p>
+
+          <p class="price-line price-line--total">
+            <span>Total</span>
+            <span>Ver taller*</span>
+          </p>
+
+        </div>
+
+        <p style="font-size:0.7rem;color:var(--color-text-muted);margin-bottom:var(--space-md)">
+          *Monto referencial. El taller confirma el total tras inspección presencial.
+        </p>
+
+        <!-- CTA (link simulado, no JS) -->
+        <a href="#main-content" class="btn-quote" aria-label="Solicitar cotización formal con el taller">
+          Generar Cotización
+        </a>
+
+        <!-- Info adicional -->
+        <h3 class="panel__title" style="margin-top:var(--space-md)">Información adicional</h3>
+        <dl class="quote-meta">
+          <div class="quote-meta__row">
+            <dt>Tiempo estimado de entrega</dt>
+            <dd>
+              <span class="delivery-time delivery-time--leve">2 – 3 días hábiles</span>
+              <span class="delivery-time delivery-time--moderado">5 – 7 días hábiles</span>
+              <span class="delivery-time delivery-time--severo">10 – 14 días hábiles</span>
+            </dd>
+          </div>
+          <div class="quote-meta__row">
+            <dt>Garantía del trabajo</dt>
+            <dd>12 meses — pintura y enderezado</dd>
+          </div>
+          <div class="quote-meta__row">
+            <dt>Método de pago</dt>
+            <dd>Efectivo, SINPE, tarjeta</dd>
+          </div>
+        </dl>
+
+      </aside>
+
+      <!-- =====================================================
+           ZONA D — PALETA DE PINTURA (Flexbox, full-width)
+           ===================================================== -->
+      <section class="palette-section panel" aria-labelledby="lbl-paleta">
+        <h2 class="panel__title" id="lbl-paleta">
+          Paleta de Pintura · Flexbox · justify-content: center · flex-wrap: wrap
+        </h2>
+
+        <ul class="palette" role="group" aria-label="Seleccioná el color de pintura">
+
+          <li><label for="color-rojo" class="swatch" aria-label="Rojo">
+            <input type="radio" name="car-color" id="color-rojo-pal"
+                   class="swatch__input" aria-hidden="true">
+            <span class="swatch__block swatch__block--rojo">
+              <span class="swatch__check" aria-hidden="true">✓</span>
+            </span>
+            <span class="swatch__label">Rojo</span>
+          </label></li>
+
+          <li><label for="color-blanco" class="swatch" aria-label="Blanco">
+            <input type="radio" name="car-color" id="color-blanco-pal"
+                   class="swatch__input" aria-hidden="true">
+            <span class="swatch__block swatch__block--blanco">
+              <span class="swatch__check" aria-hidden="true">✓</span>
+            </span>
+            <span class="swatch__label">Blanco</span>
+          </label></li>
+
+          <li><label for="color-negro" class="swatch" aria-label="Negro">
+            <input type="radio" name="car-color" id="color-negro-pal"
+                   class="swatch__input" aria-hidden="true">
+            <span class="swatch__block swatch__block--negro">
+              <span class="swatch__check" aria-hidden="true">✓</span>
+            </span>
+            <span class="swatch__label">Negro</span>
+          </label></li>
+
+          <li><label for="color-azul" class="swatch" aria-label="Azul">
+            <input type="radio" name="car-color" id="color-azul-pal"
+                   class="swatch__input" aria-hidden="true">
+            <span class="swatch__block swatch__block--azul">
+              <span class="swatch__check" aria-hidden="true">✓</span>
+            </span>
+            <span class="swatch__label">Azul</span>
+          </label></li>
+
+          <li><label for="color-plata" class="swatch" aria-label="Plata">
+            <input type="radio" name="car-color" id="color-plata-pal"
+                   class="swatch__input" aria-hidden="true" checked>
+            <span class="swatch__block swatch__block--plata">
+              <span class="swatch__check" aria-hidden="true">✓</span>
+            </span>
+            <span class="swatch__label">Plata</span>
+          </label></li>
+
+          <li><label for="color-verde" class="swatch" aria-label="Verde">
+            <input type="radio" name="car-color" id="color-verde-pal"
+                   class="swatch__input" aria-hidden="true">
+            <span class="swatch__block swatch__block--verde">
+              <span class="swatch__check" aria-hidden="true">✓</span>
+            </span>
+            <span class="swatch__label">Verde</span>
+          </label></li>
+
+          <li><label for="color-naranja" class="swatch" aria-label="Naranja">
+            <input type="radio" name="car-color" id="color-naranja-pal"
+                   class="swatch__input" aria-hidden="true">
+            <span class="swatch__block swatch__block--naranja">
+              <span class="swatch__check" aria-hidden="true">✓</span>
+            </span>
+            <span class="swatch__label">Naranja</span>
+          </label></li>
+
+          <li><label for="color-perla" class="swatch" aria-label="Perla">
+            <input type="radio" name="car-color" id="color-perla-pal"
+                   class="swatch__input" aria-hidden="true">
+            <span class="swatch__block swatch__block--perla">
+              <span class="swatch__check" aria-hidden="true">✓</span>
+            </span>
+            <span class="swatch__label">Perla</span>
+          </label></li>
+
+        </ul>
+      </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+      <span>ISW-521 · Programación en Ambiente Web I · UTN Sede San Carlos · Prof. Bryan Chaves Salas</span>
+      <span>Sin JS · Solo CSS Puro</span>
+    </footer>
+
+  </div><!-- /.app-shell -->
+
+</body>
+</html>

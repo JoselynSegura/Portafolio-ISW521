@@ -1,0 +1,237 @@
+/* ============================================================
+   LAYOUT.CSS — Macroestructura
+   Grid de 3 columnas: sidebar | principal | cotización
+   Paleta de colores en fila abajo (full-width)
+   Fondo oscuro industrial, tipografía agresiva.
+   ============================================================ */
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { font-size: 100%; }
+
+body {
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-text);
+  min-height: 100vh;
+  min-width: 320px;
+  overflow-x: hidden;
+  line-height: 1.5;
+}
+
+img { max-width: 100%; display: block; }
+
+ul, ol { list-style: none; }
+
+/* ---------- Skip link accesibilidad ---------- */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-focus);
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 0 0 var(--radius-sm) 0;
+  font-weight: 700;
+  z-index: 200;
+}
+.skip-link:focus { left: 0; }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+  background: var(--color-bg-panel);
+  border-bottom: 3px solid var(--color-accent);
+  padding: var(--space-md) var(--space-lg);
+}
+
+.site-header__inner {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+.site-header h1 {
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2.4vw, 1.5rem);
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text);
+}
+
+.site-header h1 span {
+  color: var(--color-accent);
+}
+
+.site-header__sub {
+  font-size: clamp(0.7rem, 1.4vw, 0.85rem);
+  color: var(--color-text-muted);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ============================================================
+   SHOWROOM GRID — 3 columnas + paleta abajo
+   ============================================================ */
+.showroom-grid {
+  display: grid;
+  grid-template-columns:
+    minmax(min(200px, 100%), 1fr)
+    minmax(min(300px, 100%), 2.5fr)
+    minmax(min(220px, 100%), 1.1fr);
+  grid-template-areas:
+    "sidebar  vehicle  quote"
+    "palette  palette  palette";
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  max-width: 1440px;
+  margin: 0 auto;
+}
+
+/* ---------- Zona A: Sidebar ---------- */
+.sidebar {
+  grid-area: sidebar;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  min-width: 0;
+}
+
+/* ---------- Zona B: Vehículo ---------- */
+.vehicle-section {
+  grid-area: vehicle;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* ---------- Zona C: Cotización ---------- */
+.quote-panel {
+  grid-area: quote;
+  min-width: 0;
+}
+
+/* ---------- Zona D: Paleta full-width ---------- */
+.palette-section {
+  grid-area: palette;
+}
+
+/* ============================================================
+   PANEL — tarjeta oscura genérica
+   ============================================================ */
+.panel {
+  background: var(--color-bg-panel);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-md);
+  box-shadow: var(--shadow-panel);
+}
+
+/* Encabezado de panel con línea roja inferior */
+.panel__title {
+  font-family: var(--font-display);
+  font-size: clamp(0.65rem, 1.4vw, 0.78rem);
+  font-weight: 900;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: var(--space-xs);
+  margin-bottom: var(--space-md);
+}
+
+h2.panel__title { /* reset heading */ }
+h3.panel__title { }
+
+/* ============================================================
+   ÁREA PRINCIPAL del vehículo
+   ============================================================ */
+.vehicle-display {
+  position: relative;
+  background: var(--color-bg-card);
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border);
+  overflow: hidden;
+  aspect-ratio: 4 / 3;
+  display: grid;
+}
+
+/* Todas las imágenes en la misma celda (Grid Overlay) */
+.vehicle-display__img {
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transition: opacity var(--transition-medium);
+  padding: var(--space-md);
+  /* El filtro de color de fondo lo maneja el overlay */
+}
+
+.vehicle-display__img--front { opacity: 1; }
+
+/* Overlay de color (mix-blend-mode) */
+.vehicle-display__overlay {
+  grid-area: 1 / 1;
+  z-index: 2;
+  border-radius: var(--radius-md);
+  background-color: var(--car-overlay-color);
+  opacity: var(--car-overlay-opacity);
+  mix-blend-mode: color;
+  pointer-events: none;
+  transition: background-color var(--transition-medium),
+              opacity var(--transition-medium);
+}
+
+/* Label de vista activa sobre la imagen */
+.vehicle-display__label {
+  position: absolute;
+  top: var(--space-sm);
+  left: var(--space-sm);
+  background: rgba(13, 13, 26, 0.75);
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-sm);
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* ============================================================
+   STATUS BAR (modelo · vista · color seleccionados)
+   ============================================================ */
+.status-bar {
+  font-size: clamp(0.72rem, 1.4vw, 0.82rem);
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--space-xs) 0;
+  letter-spacing: 0.05em;
+}
+
+.status-bar strong { color: var(--color-accent); }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--color-bg-panel);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-md) var(--space-lg);
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  font-size: clamp(0.7rem, 1.4vw, 0.8rem);
+  color: var(--color-text-muted);
+  letter-spacing: 0.06em;
+}
+
+.site-footer span { color: var(--color-text-muted); }

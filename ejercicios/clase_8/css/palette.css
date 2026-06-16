@@ -1,0 +1,169 @@
+/* ============================================================
+   PALETTE.CSS — Paleta de pintura estilo botones rectangulares
+   Basado en la referencia visual: botones anchos con nombre,
+   seleccionado con borde inferior rojo + check + label negrita.
+   Técnica de color: mix-blend-mode overlay (no hue-rotate).
+   ============================================================ */
+
+/* ============================================================
+   CONTROL DE COLOR: Radio Button Hack
+   Cada radio sobreescribe --car-overlay-color y --car-overlay-opacity
+   en .app-shell. El overlay .vehicle-display__overlay toma esos valores.
+   ============================================================ */
+#color-rojo:checked    ~ .app-shell { --car-overlay-color: #D32F2F; --car-overlay-opacity: 0.82; }
+#color-blanco:checked  ~ .app-shell { --car-overlay-color: #EEEEEE; --car-overlay-opacity: 0.55; }
+#color-negro:checked   ~ .app-shell { --car-overlay-color: #111111; --car-overlay-opacity: 0.88; }
+#color-azul:checked    ~ .app-shell { --car-overlay-color: #1565C0; --car-overlay-opacity: 0.80; }
+#color-plata:checked   ~ .app-shell { --car-overlay-color: transparent; --car-overlay-opacity: 0; }
+#color-verde:checked   ~ .app-shell { --car-overlay-color: #1B5E20; --car-overlay-opacity: 0.80; }
+#color-naranja:checked ~ .app-shell { --car-overlay-color: #E65100; --car-overlay-opacity: 0.82; }
+#color-perla:checked   ~ .app-shell { --car-overlay-color: #F5F0E8; --car-overlay-opacity: 0.50; }
+
+/* ============================================================
+   CONTENEDOR DE LA PALETA
+   ============================================================ */
+.palette {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  padding: var(--space-sm) 0;
+}
+
+/* ============================================================
+   BOTÓN DE COLOR — estilo rectangular con nombre
+   ============================================================ */
+.swatch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--space-xs);
+  cursor: pointer;
+  min-width: clamp(56px, 10vw, 90px);
+
+  /* Animación de entrada en cascada */
+  animation: swatchIn 0.35s ease forwards;
+  opacity: 0;
+}
+
+.palette li:nth-child(1) .swatch { animation-delay: 0.00s; }
+.palette li:nth-child(2) .swatch { animation-delay: 0.06s; }
+.palette li:nth-child(3) .swatch { animation-delay: 0.12s; }
+.palette li:nth-child(4) .swatch { animation-delay: 0.18s; }
+.palette li:nth-child(5) .swatch { animation-delay: 0.24s; }
+.palette li:nth-child(6) .swatch { animation-delay: 0.30s; }
+.palette li:nth-child(7) .swatch { animation-delay: 0.36s; }
+.palette li:nth-child(8) .swatch { animation-delay: 0.42s; }
+
+@keyframes swatchIn {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Input oculto pero accesible */
+.swatch__input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Bloque de color rectangular */
+.swatch__block {
+  width: 100%;
+  height: clamp(36px, 6vw, 52px);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+  border: 2px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 4px solid transparent;
+  display: grid;
+  place-items: center;
+  transition: border-color var(--transition-fast),
+              transform var(--transition-fast),
+              box-shadow var(--transition-fast);
+  position: relative;
+}
+
+.swatch:hover .swatch__block {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.5);
+}
+
+/* Marca de selección (check) */
+.swatch__check {
+  font-size: 1.1rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.9);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+/* Nombre del color */
+.swatch__label {
+  font-size: clamp(0.65rem, 1.4vw, 0.78rem);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: var(--space-xs) var(--space-xs);
+  background: var(--color-bg-card);
+  width: 100%;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  border: 2px solid rgba(255, 255, 255, 0.08);
+  border-top: none;
+  transition: color var(--transition-fast),
+              background var(--transition-fast);
+}
+
+/* ---------- Estado seleccionado ---------- */
+.swatch__input:checked ~ .swatch__block {
+  border-bottom-color: var(--color-accent);
+  border-width: 2px 2px 4px 2px;
+  box-shadow: 0 4px 16px rgba(230, 57, 70, 0.4);
+}
+
+.swatch__input:checked ~ .swatch__block .swatch__check {
+  opacity: 1;
+}
+
+.swatch__input:checked ~ .swatch__label {
+  color: var(--color-text);
+  font-weight: 700;
+  background: var(--color-bg-panel);
+}
+
+/* ---------- Foco teclado ---------- */
+.swatch__input:focus-visible ~ .swatch__block {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* ---------- Colores de cada bloque ---------- */
+.swatch__block--rojo    { background: var(--swatch-rojo); }
+.swatch__block--blanco  { background: var(--swatch-blanco); }
+.swatch__block--negro   { background: var(--swatch-negro); }
+.swatch__block--azul    { background: var(--swatch-azul); }
+.swatch__block--plata   {
+  background: var(--swatch-plata);
+  background-image: repeating-linear-gradient(
+    45deg, rgba(255,255,255,0.25) 0 4px, transparent 4px 10px
+  );
+}
+.swatch__block--verde   { background: var(--swatch-verde); }
+.swatch__block--naranja { background: var(--swatch-naranja); }
+.swatch__block--perla   {
+  background: var(--swatch-perla);
+  background-image: repeating-radial-gradient(
+    circle at 30% 30%, rgba(255,220,180,0.5) 0 4px, transparent 4px 12px
+  );
+}
+
+/* Check contraste en colores claros */
+.swatch__block--blanco .swatch__check,
+.swatch__block--perla  .swatch__check {
+  color: #1A1A2E;
+  text-shadow: none;
+}

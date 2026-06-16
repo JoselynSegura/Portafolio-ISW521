@@ -1,0 +1,432 @@
+/* ============================================================
+   INTERACTIONS.CSS — Toda la interactividad CSS pura
+   Radio Button Hack, estados activos, sidebar, cotización,
+   microinteracciones, prefers-reduced-motion.
+   ============================================================ */
+
+/* ============================================================
+   1. INPUTS DE ESTADO — accesibles, ocultos visualmente
+   ============================================================ */
+.visually-hidden-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* ============================================================
+   2. FIELDSET / LEYENDA
+   ============================================================ */
+.option-group {
+  border: none;
+  padding: 0;
+  margin: 0 0 var(--space-sm) 0;
+}
+
+.option-group:focus-within {
+  /* indicador de grupo activo sin depender del color */
+  outline: none;
+}
+
+/* ============================================================
+   3. BOTONES DE OPCIÓN — MODELO y ÁNGULO (pill vertical)
+   Estilo: tarjeta oscura, borde izquierdo rojo al seleccionar
+   ============================================================ */
+.option-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.option-pill {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: border-color var(--transition-fast),
+              background var(--transition-fast),
+              transform var(--transition-fast);
+  font-size: clamp(0.78rem, 1.6vw, 0.9rem);
+  color: var(--color-text-label);
+}
+
+.option-pill__name {
+  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: clamp(0.82rem, 1.6vw, 0.95rem);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  display: block;
+}
+
+.option-pill__sub {
+  font-size: clamp(0.65rem, 1.2vw, 0.72rem);
+  color: var(--color-text-muted);
+  display: block;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.option-pill__check {
+  margin-left: auto;
+  font-size: 0.9rem;
+  color: var(--color-accent);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.option-pill:hover {
+  border-left-color: var(--color-border-active);
+  background: rgba(230, 57, 70, 0.08);
+  transform: translateX(2px);
+}
+
+/* Foco teclado */
+.visually-hidden-input:focus-visible + .option-pill {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+/* SELECCIONADO */
+.visually-hidden-input:checked + .option-pill {
+  border-left-color: var(--color-accent);
+  background: rgba(230, 57, 70, 0.13);
+  color: var(--color-text);
+  box-shadow: inset 0 0 0 1px rgba(230, 57, 70, 0.25);
+}
+
+.visually-hidden-input:checked + .option-pill .option-pill__check {
+  opacity: 1;
+}
+
+/* ============================================================
+   4. RADIO BUTTON HACK — MODELO
+   Muestra/oculta bloque de imágenes y nombre de modelo
+   ============================================================ */
+.model-block { display: none; }
+
+#model-corolla:checked ~ .app-shell .model-block--corolla,
+#model-hilux:checked   ~ .app-shell .model-block--hilux {
+  display: block;
+}
+
+/* Texto de estado — nombre del modelo */
+.status__model { display: none; }
+
+#model-corolla:checked ~ .app-shell .status__model--corolla,
+#model-hilux:checked   ~ .app-shell .status__model--hilux {
+  display: inline;
+}
+
+/* ============================================================
+   5. RADIO BUTTON HACK — ÁNGULO DE CÁMARA
+   Grid Overlay: 3 imágenes en misma celda, una visible a la vez
+   ============================================================ */
+
+/* Por defecto frente visible (coincide con checked en HTML) */
+.vehicle-display__img { opacity: 0; }
+.vehicle-display__img--front { opacity: 1; }
+
+/* Override cuando se elige ángulo específico */
+#angle-front:checked ~ .app-shell .vehicle-display__img--front { opacity: 1; }
+#angle-side:checked  ~ .app-shell .vehicle-display__img--side  { opacity: 1; }
+#angle-rear:checked  ~ .app-shell .vehicle-display__img--rear  { opacity: 1; }
+
+#angle-front:checked ~ .app-shell .vehicle-display__img--side,
+#angle-front:checked ~ .app-shell .vehicle-display__img--rear  { opacity: 0; }
+#angle-side:checked  ~ .app-shell .vehicle-display__img--front,
+#angle-side:checked  ~ .app-shell .vehicle-display__img--rear  { opacity: 0; }
+#angle-rear:checked  ~ .app-shell .vehicle-display__img--front,
+#angle-rear:checked  ~ .app-shell .vehicle-display__img--side  { opacity: 0; }
+
+/* Label de ángulo activo sobre la imagen */
+.status__angle { display: none; }
+
+#angle-front:checked ~ .app-shell .status__angle--front,
+#angle-side:checked  ~ .app-shell .status__angle--side,
+#angle-rear:checked  ~ .app-shell .status__angle--rear {
+  display: inline;
+}
+
+/* ============================================================
+   6. RADIO BUTTON HACK — COLOR (en palette.css)
+   El control de --car-overlay-color y --car-overlay-opacity
+   está en palette.css para mantener cohesión de responsabilidades.
+   ============================================================ */
+
+/* Texto de estado — nombre del color */
+.status__color { display: none; }
+
+#color-rojo:checked    ~ .app-shell .status__color--rojo,
+#color-blanco:checked  ~ .app-shell .status__color--blanco,
+#color-negro:checked   ~ .app-shell .status__color--negro,
+#color-azul:checked    ~ .app-shell .status__color--azul,
+#color-plata:checked   ~ .app-shell .status__color--plata,
+#color-verde:checked   ~ .app-shell .status__color--verde,
+#color-naranja:checked ~ .app-shell .status__color--naranja,
+#color-perla:checked   ~ .app-shell .status__color--perla {
+  display: inline;
+}
+
+/* ============================================================
+   7. TIPO DE PINTURA — descripción y precio
+   ============================================================ */
+.paint-desc,
+.price-line--paint { display: none; }
+
+#paint-estandar:checked ~ .app-shell .paint-desc--estandar,
+#paint-metalica:checked ~ .app-shell .paint-desc--metalica,
+#paint-perlada:checked  ~ .app-shell .paint-desc--perlada  { display: block; }
+
+#paint-estandar:checked ~ .app-shell .price-line--paint-estandar,
+#paint-metalica:checked ~ .app-shell .price-line--paint-metalica,
+#paint-perlada:checked  ~ .app-shell .price-line--paint-perlada  { display: flex; }
+
+/* ============================================================
+   8. NIVEL DE REPARACIÓN — descripción y precio
+   ============================================================ */
+.repair-desc,
+.price-line--repair { display: none; }
+
+#repair-leve:checked     ~ .app-shell .repair-desc--leve,
+#repair-moderado:checked ~ .app-shell .repair-desc--moderado,
+#repair-severo:checked   ~ .app-shell .repair-desc--severo { display: block; }
+
+#repair-leve:checked     ~ .app-shell .price-line--repair-leve,
+#repair-moderado:checked ~ .app-shell .price-line--repair-moderado,
+#repair-severo:checked   ~ .app-shell .price-line--repair-severo { display: flex; }
+
+/* ============================================================
+   9. PRECIO BASE SEGÚN MODELO
+   ============================================================ */
+.price-line--base { display: none; }
+
+#model-corolla:checked ~ .app-shell .price-line--base-corolla,
+#model-hilux:checked   ~ .app-shell .price-line--base-hilux   { display: flex; }
+
+/* ============================================================
+   10. TIEMPO DE ENTREGA SEGÚN REPARACIÓN
+   ============================================================ */
+.delivery-time { display: none; }
+
+#repair-leve:checked     ~ .app-shell .delivery-time--leve,
+#repair-moderado:checked ~ .app-shell .delivery-time--moderado,
+#repair-severo:checked   ~ .app-shell .delivery-time--severo { display: inline; }
+
+/* ============================================================
+   11. COTIZACIÓN — estilos del panel derecho
+   ============================================================ */
+.price-breakdown {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  margin-bottom: var(--space-md);
+}
+
+.price-line {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--color-border);
+  font-size: clamp(0.75rem, 1.4vw, 0.85rem);
+  color: var(--color-text-label);
+  animation: lineIn 0.25s ease;
+}
+
+@keyframes lineIn {
+  from { opacity: 0; transform: translateX(-8px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.price-line span:last-child {
+  font-weight: 700;
+  color: var(--color-text);
+  white-space: nowrap;
+}
+
+.price-line--total {
+  border-bottom: none;
+  border-top: 2px solid var(--color-border-active);
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  font-size: clamp(0.88rem, 1.8vw, 1rem);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.price-line--total span:first-child {
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-family: var(--font-display);
+}
+
+.price-line--total span:last-child {
+  color: var(--color-accent);
+  font-size: 1.1em;
+}
+
+/* Botón "Generar cotización" */
+.btn-quote {
+  display: block;
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  background: var(--color-accent);
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 900;
+  font-size: clamp(0.78rem, 1.6vw, 0.9rem);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  margin-top: var(--space-md);
+  transition: background var(--transition-fast),
+              transform var(--transition-fast),
+              box-shadow var(--transition-fast);
+  text-decoration: none;
+}
+
+.btn-quote:hover {
+  background: var(--color-accent-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(230, 57, 70, 0.45);
+}
+
+.btn-quote:active { transform: translateY(0); }
+
+.btn-quote:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* dl de información adicional */
+.quote-meta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  font-size: clamp(0.72rem, 1.4vw, 0.82rem);
+}
+
+.quote-meta__row {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: var(--space-xs) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.quote-meta__row dt {
+  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.quote-meta__row dd {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* ============================================================
+   12. DESCRIPCIÓN DE PINTURA / REPARACIÓN (zona central)
+   ============================================================ */
+.service-info {
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-left: 3px solid var(--color-accent);
+  border-radius: var(--radius-sm);
+  padding: var(--space-sm) var(--space-md);
+  font-size: clamp(0.75rem, 1.4vw, 0.85rem);
+  color: var(--color-text-label);
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.service-info strong {
+  color: var(--color-text);
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+/* Selector de tipo/reparación dentro de la zona central */
+.inline-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  margin-bottom: var(--space-sm);
+}
+
+.inline-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: var(--space-xs) var(--space-sm);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: clamp(0.72rem, 1.4vw, 0.82rem);
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  transition: border-color var(--transition-fast),
+              color var(--transition-fast),
+              background var(--transition-fast);
+}
+
+.inline-pill__check { opacity: 0; transition: opacity var(--transition-fast); }
+
+.inline-pill:hover {
+  border-color: var(--color-accent);
+  color: var(--color-text);
+}
+
+.visually-hidden-input:focus-visible + .inline-pill {
+  outline: 2px solid var(--color-focus);
+  outline-offset: 2px;
+}
+
+.visually-hidden-input:checked + .inline-pill {
+  border-color: var(--color-accent);
+  background: rgba(230, 57, 70, 0.15);
+  color: var(--color-text);
+  font-weight: 700;
+}
+
+.visually-hidden-input:checked + .inline-pill .inline-pill__check {
+  opacity: 1;
+}
+
+/* ============================================================
+   13. PREFERS-REDUCED-MOTION (única @media permitida)
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  /* Sin animación de entrada -> asegura visibilidad */
+  .swatch { opacity: 1; }
+}
