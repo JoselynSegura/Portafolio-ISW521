@@ -1,0 +1,10 @@
+const base = {saludo: "Hola"};
+const hijo = Object.create(base);
+
+cosole.log(hijo.saludo);
+hijo.saludo = "Pura vida";
+
+
+//Outputs en orde: "Hola", luego "Pura vida", luego "Hola"
+//hijo.saludo = "Pra vida" no modifica base: crea una propiedad propia en hijo que oculta shadow la del prototipo 
+//base.saludo queda intacta porque la cadena nunca se tocó solo se agregó una propiedad local a hijo

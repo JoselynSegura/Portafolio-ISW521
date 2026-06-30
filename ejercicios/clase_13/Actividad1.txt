@@ -1,0 +1,15 @@
+let a = {puntos: 10};
+let b = a;
+b.puntos = 99;
+
+let c = {...a};
+c.puntos = 1;
+
+console.log(a.puntos, b.puntos, c.puntos);
+
+/* El output es 99 99 1
+
+a y b apuntan al mismo objeto, modificar b.puntos también cambia  lo que ven a través de a
+
+el operador spread ({..a}) */
+

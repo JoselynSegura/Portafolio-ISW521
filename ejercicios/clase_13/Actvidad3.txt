@@ -1,0 +1,5 @@
+Falta new antes del curso
+Sin new, curso corre como función normal: this no apunta a un objeto nuevo y en modo estricto es undefined 
+Fuera de modo estricto, this apuntaría al objeto global, contaminando con una propiedad nombre
+correción: const prog = new curso("Programción Wec")
+
